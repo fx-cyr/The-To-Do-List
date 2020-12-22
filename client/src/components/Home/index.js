@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import DateNav from "./DateNav";
+import Todo from "./Todo";
 
 const Home = () => {
+  const [navDate, setNavDate] = useState(null);
+  const [isCompleted, setIsCompleted] = useState(false);
+
   return (
     <Wrapper>
       <Header />
-      <DateNav />
+      <DateNav setNavDate={setNavDate} />
+      <Todo setIsCompleted={setIsCompleted} isCompleted={isCompleted} />
     </Wrapper>
   );
 };
