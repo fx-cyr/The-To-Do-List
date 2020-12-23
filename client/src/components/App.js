@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "./Home";
+import Menu from "./Menu";
 
 const App = () => {
-  return <Home />;
+  const [allTasks, setAllTasks] = useState([]);
+
+  return <Menu allTasks={allTasks} setAllTasks={setAllTasks} />;
 };
 
 export default App;
