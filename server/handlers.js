@@ -43,8 +43,36 @@ const addTask = async (req, res) => {
     });
   } catch (err) {
     console.log(err.stack);
+    if (result.length > 0) {
+    }
   }
   client.close();
 };
 
-module.exports = { addTask };
+const getAllTasks = async (req, res) => {
+  const { date } = req.params;
+  const client = await MongoClient(MONGO_URI, options);
+  console.log(client);
+  try {
+    await client.connect();
+    const db = client.db("todo_list");
+    const result = await db.collection("tasks").find({ date: date }).toArray();
+    //console.log(result);
+    if (result.length > 0) {
+      return res.status(200).json({
+        status: 200,
+        message: "Tasks retrieved",
+        data: result,
+      });
+    } else {
+      return res.status(400).json({
+        status: 400,
+        message: "No tasks retrieved",
+      });
+    }
+  } catch (err) {
+    console.log(err.stack);
+  }
+};
+
+module.exports = { addTask, getAllTasks };

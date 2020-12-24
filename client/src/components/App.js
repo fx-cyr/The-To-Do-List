@@ -15,13 +15,13 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <Redirect to="/home" />
+        <Route exact path='/'>
+          <Redirect to='/home' />
         </Route>
-        <Route path="/home">
+        <Route path='/home'>
           <Home />
         </Route>
-        <Route path="/menu">
+        <Route path='/menu'>
           <Menu />
         </Route>
       </Switch>
