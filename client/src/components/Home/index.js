@@ -3,8 +3,11 @@ import styled from "styled-components";
 import Header from "./Header";
 import DateNav from "./DateNav";
 import Todo from "./Todo";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const history = useHistory();
   const [navDate, setNavDate] = useState(null);
   const [isCompleted, setIsCompleted] = useState(false);
 
@@ -13,6 +16,7 @@ const Home = () => {
       <Header />
       <DateNav setNavDate={setNavDate} />
       <Todo setIsCompleted={setIsCompleted} isCompleted={isCompleted} />
+      <Link to="/menu">Add a thing</Link>
     </Wrapper>
   );
 };
@@ -25,5 +29,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
+const Button = styled.button``;
 
 export default Home;
