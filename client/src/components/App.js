@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Home from "./Home";
-import Menu from "./Menu";
+import React, { useState } from 'react';
+import Home from './Home';
+import Menu from './Menu';
 
 const App = () => {
   const [allTasks, setAllTasks] = useState([]);
