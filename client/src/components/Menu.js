@@ -4,8 +4,10 @@ import { MenuItem, FormControl, Select } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import { useHistory } from "react-router-dom";
 
 const Menu = ({ allTasks, setAllTasks }) => {
+  const history = useHistory();
   const [currentCategory, setCurrentCategory] = useState("Personal");
   const [currentPriority, setCurrentPriority] = useState("Low");
   const [dateValue, setDateValue] = useState("");
@@ -67,6 +69,10 @@ const Menu = ({ allTasks, setAllTasks }) => {
     // console.log(dateVal);
   };
 
+  const goToHome = () => {
+    history.push("/home");
+  };
+
   let checkIfValid = (ev) => {
     ev.preventDefault();
     if (inputValue === "") {
@@ -93,6 +99,7 @@ const Menu = ({ allTasks, setAllTasks }) => {
       <Header>
         <ArrowBackIcon
           style={{ right: "100px", color: "black", fontSize: "2em" }}
+          onClick={goToHome}
         />
         <Title>Add a To-Do</Title>
       </Header>
