@@ -1,22 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "./Header";
-import DateNav from "./DateNav";
 import Todo from "./Todo";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [allTasks, setAllTasks] = useState([]);
   const history = useHistory();
-  const [navDate, setNavDate] = useState(null);
+  const [navDate, setNavDate] = useState();
   const [isCompleted, setIsCompleted] = useState(false);
+  console.log(navDate);
+
+  const handleChange = (state, ev) => {
+    state(ev.target.value);
+    fetch(`/api/task/${ev.target.value}`, {
+      method: "get",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        if (json.data) {
+          setAllTasks(json.data);
+        } else {
+          setAllTasks(null);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const addTodo = () => {
+    history.push("/menu");
+  };
 
   return (
     <Wrapper>
       <Header />
-      <DateNav setNavDate={setNavDate} />
+      <FormContainer>
+        <Form>
+          <Input
+            type="date"
+            placeholder="Select a date"
+            onChange={(ev) => {
+              handleChange(setNavDate, ev);
+            }}
+          ></Input>
+        </Form>
+      </FormContainer>
+      {/* <DateNav setNavDate={setNavDate} navDate={navDate} /> */}
+      {allTasks != null
+        ? allTasks.map((task) => {
+            return (
+              <Todo
+                task={task}
+                isCompleted={isCompleted}
+                setIsCompleted={setIsCompleted}
+              />
+            );
+          })
+        : "Seems like you're 😎"}
       <Todo setIsCompleted={setIsCompleted} isCompleted={isCompleted} />
-      <Link to="/menu">Add a thing</Link>
+      <Button onClick={addTodo}>Add a thing</Button>
     </Wrapper>
   );
 };
@@ -30,6 +78,23 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  margin: 20px 0;
+  border-radius: 20px;
+  padding: 10px 20px;
+`;
+
+const Input = styled.input`
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const Form = styled.form``;
+
+const FormContainer = styled.div`
+  padding: 20px 0;
+`;
 
 export default Home;

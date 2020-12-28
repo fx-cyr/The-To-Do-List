@@ -92,6 +92,7 @@ const Menu = ({ allTasks, setAllTasks }) => {
     }
     handleSubmit();
     console.log("Success");
+    history.push("/home");
   };
 
   return (
