@@ -1,24 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
-const Todo = ({ setIsCompleted, isCompleted }) => {
+const Todo = ({ setIsCompleted, isCompleted, task }) => {
   const handleCompletion = () => {
     setIsCompleted(!isCompleted);
   };
+
   return (
-    <Wrapper>
-      <Checker
-        type="checkbox"
-        onChange={() => {
-          handleCompletion();
-        }}
-      />
-      <Description>
-        <Title>Code a to do list</Title>
-        <Category>Personal</Category>
-      </Description>
-      <Priority>High</Priority>
-    </Wrapper>
+    <>
+      {task && (
+        <Wrapper>
+          <Checker
+            type="checkbox"
+            onChange={() => {
+              handleCompletion();
+            }}
+          />
+          <Description>
+            <Title>{task.title}</Title>
+            <Category>{task.category}</Category>
+          </Description>
+          <Priority>{task.priority}</Priority>
+        </Wrapper>
+      )}
+    </>
   );
 };
 
