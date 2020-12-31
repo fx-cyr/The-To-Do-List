@@ -59,11 +59,13 @@ const Home = () => {
                 task={task}
                 isCompleted={isCompleted}
                 setIsCompleted={setIsCompleted}
+                allTasks={allTasks}
+                setAllTasks={setAllTasks}
               />
             );
           })
         : "Seems like you're 😎"}
-      <Todo setIsCompleted={setIsCompleted} isCompleted={isCompleted} />
+
       <Button onClick={addTodo}>Add a thing</Button>
     </Wrapper>
   );

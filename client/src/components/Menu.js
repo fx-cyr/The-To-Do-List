@@ -23,7 +23,7 @@ const Menu = ({ allTasks, setAllTasks }) => {
         priority: currentPriority,
         date: dateValue,
         title: inputValue,
-        status: "incomplete",
+        completed: false,
       }),
       headers: {
         Accept: "application/json",

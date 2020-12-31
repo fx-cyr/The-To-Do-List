@@ -1,9 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 
-const Todo = ({ setIsCompleted, isCompleted, task }) => {
+const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
   const handleCompletion = () => {
-    setIsCompleted(!isCompleted);
+    if (task.completed === false) {
+      fetch(`/api/task/${task._id}`, {
+        method: "put",
+        body: JSON.stringify({
+          completed: true,
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).catch((err) => {
+        console.log(err);
+      });
+    } else {
+      fetch(`/api/task/${task._id}`, {
+        method: "put",
+        body: JSON.stringify({
+          completed: false,
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
   };
 
   return (
@@ -11,13 +37,20 @@ const Todo = ({ setIsCompleted, isCompleted, task }) => {
       {task && (
         <Wrapper>
           <Checker
-            type="checkbox"
-            onChange={() => {
+            onClick={() => {
               handleCompletion();
             }}
-          />
+          >
+            🔧
+          </Checker>
+
           <Description>
-            <Title>{task.title}</Title>
+            {task.completed === false ? (
+              <Title>{task.title}</Title>
+            ) : (
+              <CrossedTitle>{task.title}</CrossedTitle>
+            )}
+
             <Category>{task.category}</Category>
           </Description>
           <Priority>{task.priority}</Priority>
@@ -37,8 +70,10 @@ const Wrapper = styled.div`
   border-radius: 18px;
 `;
 
-const Checker = styled.input`
+const Checker = styled.button`
   width: 20%;
+  width: 40px;
+  height: 20px;
 `;
 
 const Description = styled.div`
@@ -48,6 +83,12 @@ const Description = styled.div`
 const Title = styled.p`
   font-size: 18px;
   margin: 0 auto;
+`;
+
+const CrossedTitle = styled.p`
+  font-size: 18px;
+  margin: 0 auto;
+  text-decoration: line-through;
 `;
 
 const Category = styled.span`
