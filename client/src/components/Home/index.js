@@ -3,9 +3,13 @@ import styled from "styled-components";
 import Header from "./Header";
 import Todo from "./Todo";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const todayRaw = new Date();
+  const today = moment(todayRaw).format("YYYY-MM-DD");
+  console.log(today);
   const [allTasks, setAllTasks] = useState([]);
   const history = useHistory();
   const [navDate, setNavDate] = useState();
@@ -44,6 +48,7 @@ const Home = () => {
         <Form>
           <Input
             type="date"
+            value={navDate}
             placeholder="Select a date"
             onChange={(ev) => {
               handleChange(setNavDate, ev);
@@ -59,11 +64,13 @@ const Home = () => {
                 task={task}
                 isCompleted={isCompleted}
                 setIsCompleted={setIsCompleted}
+                allTasks={allTasks}
+                setAllTasks={setAllTasks}
               />
             );
           })
         : "Seems like you're 😎"}
-      <Todo setIsCompleted={setIsCompleted} isCompleted={isCompleted} />
+
       <Button onClick={addTodo}>Add a thing</Button>
     </Wrapper>
   );
