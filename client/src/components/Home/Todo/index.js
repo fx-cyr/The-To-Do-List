@@ -13,9 +13,29 @@ const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).catch((err) => {
-        console.log(err);
-      });
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {
+          fetch(`/api/task/${task.date}`, {
+            method: "get",
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((json) => {
+              if (json.data) {
+                setAllTasks(json.data);
+              } else {
+                setAllTasks(null);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
     } else {
       fetch(`/api/task/${task._id}`, {
         method: "put",
@@ -26,41 +46,89 @@ const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).catch((err) => {
-        console.log(err);
-      });
+      })
+        .catch((err) => {
+          console.log(err);
+        })
+        .then(() => {
+          fetch(`/api/task/${task.date}`, {
+            method: "get",
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((json) => {
+              if (json.data) {
+                setAllTasks(json.data);
+              } else {
+                setAllTasks(null);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
     }
   };
 
   return (
     <>
       {task && (
-        <Wrapper>
-          <Checker
-            onClick={() => {
-              handleCompletion();
-            }}
-          >
-            🔧
-          </Checker>
+        <>
+          {task.completed === false ? (
+            <Wrapper>
+              <Checker
+                onClick={() => {
+                  handleCompletion();
+                }}
+              >
+                🔧
+              </Checker>
 
-          <Description>
-            {task.completed === false ? (
-              <Title>{task.title}</Title>
-            ) : (
-              <CrossedTitle>{task.title}</CrossedTitle>
-            )}
+              <Description>
+                <Title>{task.title}</Title>
 
-            <Category>{task.category}</Category>
-          </Description>
-          <Priority>{task.priority}</Priority>
-        </Wrapper>
+                <Category>{task.category}</Category>
+              </Description>
+              <Priority>{task.priority}</Priority>
+            </Wrapper>
+          ) : (
+            <DoneWrapper>
+              <Checker
+                onClick={() => {
+                  handleCompletion();
+                }}
+              >
+                🔧
+              </Checker>
+
+              <Description>
+                <Title>{task.title}</Title>
+
+                <Category>{task.category}</Category>
+              </Description>
+              <Priority>{task.priority}</Priority>
+            </DoneWrapper>
+          )}
+        </>
       )}
     </>
   );
 };
 
 const Wrapper = styled.div`
+  margin: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid grey;
+  border-radius: 18px;
+`;
+
+const DoneWrapper = styled.div`
+  background-color: red;
   margin: 10px;
   display: flex;
   width: 100%;
