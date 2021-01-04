@@ -5,6 +5,7 @@ import lion from "../../assets/lion.jpeg";
 import mountain from "../../assets/mountain.jpeg";
 import ottawabuilding from "../../assets/ottawabuilding.jpeg";
 import road from "../../assets/road.jpeg";
+import { BsChatQuote } from "react-icons/bs";
 
 const images = [lake, lion, mountain, ottawabuilding, road];
 
@@ -32,9 +33,16 @@ const Header = () => {
   return (
     <Container>
       <Wrapper src={randomImg} />
-      <Quote>
-        {randomQuote.text} {randomQuote.author}
-      </Quote>
+      {randomQuote && (
+        <>
+          <Quote>
+            <Icon>
+              <BsChatQuote />
+            </Icon>
+            {randomQuote.text} {randomQuote.author}
+          </Quote>
+        </>
+      )}
     </Container>
   );
 };
@@ -45,13 +53,13 @@ const Wrapper = styled.img`
   object-fit: cover;
   position: relative;
   opacity: 70%;
-`;
-
-const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
+
+const Container = styled.div``;
 
 const Quote = styled.div`
   position: absolute;
@@ -67,5 +75,7 @@ const Quote = styled.div`
   background-color: black;
   opacity: 50%;
 `;
+
+const Icon = styled.div``;
 
 export default Header;
