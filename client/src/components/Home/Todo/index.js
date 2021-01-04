@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CheckIcon from "@material-ui/icons/Check";
 
 const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
   const handleCompletion = () => {
@@ -81,11 +82,7 @@ const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
               <Checker
                 onClick={() => {
                   handleCompletion();
-                }}
-              >
-                🔧
-              </Checker>
-
+                }}></Checker>
               <Description>
                 <Title>{task.title}</Title>
 
@@ -95,20 +92,17 @@ const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
             </Wrapper>
           ) : (
             <DoneWrapper>
-              <Checker
+              <DoneChecker
                 onClick={() => {
                   handleCompletion();
-                }}
-              >
-                🔧
-              </Checker>
-
+                }}>
+                <CheckIcon style={{ color: "#1DD1A1" }} />
+              </DoneChecker>
               <Description>
-                <Title>{task.title}</Title>
-
-                <Category>{task.category}</Category>
+                <DoneTitle>{task.title}</DoneTitle>
+                <DoneCategory>{task.category}</DoneCategory>
               </Description>
-              <Priority>{task.priority}</Priority>
+              <DonePriority>Complete</DonePriority>
             </DoneWrapper>
           )}
         </>
@@ -118,30 +112,54 @@ const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
 };
 
 const Wrapper = styled.div`
+  font-family: Montserrat;
+  font-weight: 500;
   margin: 10px;
+  padding: 20px;
   display: flex;
-  width: 100%;
+  width: 85%;
   justify-content: space-around;
   align-items: center;
-  border: 2px solid grey;
+  border: none;
   border-radius: 18px;
+  -webkit-box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const DoneWrapper = styled.div`
-  background-color: red;
+  font-family: Montserrat;
+  font-weight: 500;
   margin: 10px;
+  padding: 20px;
   display: flex;
-  width: 100%;
+  width: 85%;
   justify-content: space-around;
   align-items: center;
-  border: 2px solid grey;
+  border: none;
   border-radius: 18px;
+  -webkit-box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const Checker = styled.button`
-  width: 20%;
-  width: 40px;
-  height: 20px;
+  width: 38px;
+  height: 38px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: 2px solid #1dd1a1;
+  background-color: white;
+`;
+
+const DoneChecker = styled.button`
+  width: 38px;
+  height: 38px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(29, 209, 161, 0.38);
+  align-items: center;
+  justify-content: center;
+  display: flex;
 `;
 
 const Description = styled.div`
@@ -149,24 +167,45 @@ const Description = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 18px;
+  font-size: 1em;
+  color: #2b2b2b;
   margin: 0 auto;
 `;
 
-const CrossedTitle = styled.p`
-  font-size: 18px;
+const DoneTitle = styled.p`
+  font-size: 1em;
   margin: 0 auto;
-  text-decoration: line-through;
+  color: #cccccc;
 `;
+
+// const CrossedTitle = styled.p`
+//   font-size: 18px;
+//   margin: 0 auto;
+//   text-decoration: line-through;
+// `;
 
 const Category = styled.span`
-  font-size: 12px;
+  color: #a3a3a3;
+  font-size: 0.8em;
+  margin: 0 auto;
+`;
+
+const DoneCategory = styled.span`
+  color: #cccccc;
+  font-size: 0.8em;
   margin: 0 auto;
 `;
 
 const Priority = styled.p`
   width: 20%;
-  color: tomato;
+  font-size: 0.8em;
+  color: #fba31f;
+`;
+
+const DonePriority = styled.p`
+  width: 20%;
+  color: #1dd1a1;
+  font-size: 0.8em;
 `;
 
 export default Todo;

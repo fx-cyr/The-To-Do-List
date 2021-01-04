@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { useHistory } from "react-router-dom";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { Typography } from "@material-ui/core";
 
 const Menu = ({ allTasks, setAllTasks }) => {
   const history = useHistory();
@@ -96,54 +98,119 @@ const Menu = ({ allTasks, setAllTasks }) => {
   };
 
   return (
-    <Wrapper>
-      <Header>
-        <ArrowBackIcon
-          style={{ right: "100px", color: "black", fontSize: "2em" }}
-          onClick={goToHome}
-        />
-        <Title>Add a To-Do</Title>
-      </Header>
-      <HeaderIcon style={{ fontSize: "3em" }} />
-      <TextField
-        label="Add To-Do List"
-        onChange={onInputChange}
-        style={{ margin: "10px" }}
+    <>
+      <BackIcon
+        style={{
+          fontSize: "2em",
+        }}
+        onClick={goToHome}
       />
-      <FormControl>
-        <SelectDropdown value={currentPriority} onChange={onPriorityChange}>
-          <MenuItem value="Low">
-            Low <LowDot />
-          </MenuItem>
-          <MenuItem value="Medium">
-            Medium
-            <MediumDot />
-          </MenuItem>
-          <MenuItem value="High">
-            High
-            <HighDot />
-          </MenuItem>
-        </SelectDropdown>
-      </FormControl>
-      <FormControl>
-        <SelectDropdown value={currentCategory} onChange={onCategoryChange}>
-          <MenuItem value="Personal">Personal</MenuItem>
-          <MenuItem value="Family">Family</MenuItem>
-          <MenuItem value="Work">Work</MenuItem>
-          <MenuItem value="Hobby">Hobby</MenuItem>
-        </SelectDropdown>
-      </FormControl>
-      <DateInput onChange={onDateChange} type="date" />
-      {errMsg === "input_err" && console.log("Add a title")}
-      {errMsg === "date_err" && console.log("Add a date")}
-      <ButtonWrap>
-        <Button type="submit" onClick={checkIfValid}>
-          Add Task
-        </Button>
-      </ButtonWrap>
-    </Wrapper>
+      <Header>
+        <Title>Task Details</Title>
+      </Header>
+      <Wrapper>
+        <ListIcon style={{ fontSize: "3em" }} />
+        <TextField
+          label={
+            <Typography style={{ fontFamily: "Montserrat" }}>
+              Add Task
+            </Typography>
+          }
+          onChange={onInputChange}
+          style={{ margin: "10px", fontFamily: "Montserrat" }}
+        />
+        <FormControl>
+          <SelectDropdown
+            value={currentPriority}
+            onChange={onPriorityChange}
+            style={{ fontFamily: "Montserrat" }}>
+            <MenuItem value='Low'>
+              Low <LowDot />
+            </MenuItem>
+            <MenuItem value='Medium'>
+              Medium
+              <MediumDot />
+            </MenuItem>
+            <MenuItem value='High'>
+              High
+              <HighDot />
+            </MenuItem>
+          </SelectDropdown>
+        </FormControl>
+        <FormControl>
+          <SelectDropdown
+            value={currentCategory}
+            onChange={onCategoryChange}
+            style={{ fontFamily: "Montserrat" }}>
+            <MenuItem value='Personal'>Personal</MenuItem>
+            <MenuItem value='Family'>Family</MenuItem>
+            <MenuItem value='Work'>Work</MenuItem>
+            <MenuItem value='Hobby'>Hobby</MenuItem>
+          </SelectDropdown>
+        </FormControl>
+        <DateInput
+          onChange={onDateChange}
+          type='date'
+          style={{ fontFamily: "Montserrat" }}
+        />
+        {errMsg === "input_err" && console.log("Add a title")}
+        {errMsg === "date_err" && console.log("Add a date")}
+        <ButtonWrap>
+          <Button type='submit' onClick={checkIfValid}>
+            <AddCircleIcon style={{ paddingRight: "5px", color: "white" }} />
+            Create Task
+          </Button>
+        </ButtonWrap>
+      </Wrapper>
+    </>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+`;
+
+const BackIcon = styled(ArrowBackIcon)`
+  position: absolute;
+  top: 35px;
+  color: #fba31f;
+  padding: 3.5px;
+  margin-left: 5px;
+  background: #feeacc;
+  border-radius: 50px;
+`;
+
+const ListIcon = styled(AssignmentIcon)`
+  color: #1dd1a1;
+  margin: 0 auto;
+`;
+
+const Title = styled.h1`
+  font-size: 1.4rem;
+  color: #2b2b2b;
+  font-family: Montserrat;
+`;
+
+const DateInput = styled.input`
+  border: none;
+  padding: 16px;
+  margin: 10px 10px;
+  border-bottom: 1.2px solid #949494;
+`;
+
+const SelectDropdown = styled(Select)`
+  margin: 20px 10px;
+  font-family: Montserrat;
+`;
 
 const LowDot = styled.span`
   height: 14px;
@@ -173,60 +240,27 @@ const HighDot = styled.span`
   display: inline-block;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Header = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const HeaderIcon = styled(AssignmentIcon)`
-  color: #30c223;
-  margin: 0 auto;
-`;
-
-const Title = styled.h1`
-  margin-right: 110px;
-  font-size: 1.5rem;
-`;
-
-const DateInput = styled.input`
-  border: none;
-  padding: 16px;
-  margin: 10px 10px;
-  border-bottom: 1.2px solid #949494;
-`;
-
-const SelectDropdown = styled(Select)`
-  margin: 20px 10px;
-`;
-
 const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
 const Button = styled.button`
-  justify-content: center;
   display: flex;
-  margin-top: 20px;
-  background: #06bbf4;
+  max-width: 50%;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 18px;
+  padding: 16px 20px;
+  border: none;
+  background: #ff6b6b;
+  box-shadow: 0px 5px 20px 1px rgba(255, 107, 107, 0.4);
+  font-family: Montserrat;
+  font-size: 1.1em;
+  font-weight: 500;
   color: white;
-  border-radius: 50px;
-  padding: 15px;
-  margin: 30px 50px;
-  border: 0px;
-  outline: none;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
 `;
 
 export default Menu;

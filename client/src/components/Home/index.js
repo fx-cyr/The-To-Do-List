@@ -5,6 +5,7 @@ import Todo from "./Todo";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 const Home = () => {
   const todayRaw = new Date();
@@ -47,13 +48,12 @@ const Home = () => {
       <FormContainer>
         <Form>
           <Input
-            type="date"
+            type='date'
             value={navDate}
-            placeholder="Select a date"
+            placeholder='Select a date'
             onChange={(ev) => {
               handleChange(setNavDate, ev);
-            }}
-          ></Input>
+            }}></Input>
         </Form>
       </FormContainer>
       {/* <DateNav setNavDate={setNavDate} navDate={navDate} /> */}
@@ -69,15 +69,16 @@ const Home = () => {
               />
             );
           })
-        : "Seems like you're 😎"}
-
-      <Button onClick={addTodo}>Add a thing</Button>
+        : "Nothing to see here 😎..."}
+      <Button onClick={addTodo}>
+        <AddCircleIcon style={{ paddingRight: "5px", color: "white" }} />
+        Create Task
+      </Button>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  margin: 0 auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -86,9 +87,18 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
+  display: flex;
+  align-items: center;
   margin: 20px 0;
-  border-radius: 20px;
-  padding: 10px 20px;
+  border-radius: 18px;
+  padding: 16px 20px;
+  border: none;
+  background: #ff6b6b;
+  box-shadow: 0px 5px 20px 1px rgba(255, 107, 107, 0.4);
+  font-family: Montserrat;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: white;
 `;
 
 const Input = styled.input`
