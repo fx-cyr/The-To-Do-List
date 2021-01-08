@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 
 const Home = () => {
   const todayRaw = new Date();
@@ -57,19 +58,24 @@ const Home = () => {
         </Form>
       </FormContainer>
       {/* <DateNav setNavDate={setNavDate} navDate={navDate} /> */}
-      {allTasks != null
-        ? allTasks.map((task) => {
-            return (
-              <Todo
-                task={task}
-                isCompleted={isCompleted}
-                setIsCompleted={setIsCompleted}
-                allTasks={allTasks}
-                setAllTasks={setAllTasks}
-              />
-            );
-          })
-        : "Nothing to see here 😎..."}
+      {allTasks != null ? (
+        allTasks.map((task) => {
+          return (
+            <Todo
+              task={task}
+              isCompleted={isCompleted}
+              setIsCompleted={setIsCompleted}
+              allTasks={allTasks}
+              setAllTasks={setAllTasks}
+            />
+          );
+        })
+      ) : (
+        <NoTasks>
+          No tasks for today
+          <HourglassEmptyIcon style={{ paddingLeft: "5px" }} />
+        </NoTasks>
+      )}
       <Button onClick={addTodo}>
         <AddCircleIcon style={{ paddingRight: "5px", color: "white" }} />
         Create Task
@@ -84,6 +90,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: Montserrat;
 `;
 
 const Button = styled.button`
@@ -91,7 +98,7 @@ const Button = styled.button`
   align-items: center;
   margin: 20px 0;
   border-radius: 18px;
-  padding: 16px 20px;
+  padding: 20px;
   border: none;
   background: #ff6b6b;
   box-shadow: 0px 5px 20px 1px rgba(255, 107, 107, 0.4);
@@ -102,16 +109,30 @@ const Button = styled.button`
 `;
 
 const Input = styled.input`
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    transform: scale(1.1);
-  }
+  border: none;
+  padding: 20px;
+  margin: 5px 5px;
+  border-radius: 15px;
+  font-family: Montserrat;
+  -webkit-box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const Form = styled.form``;
 
 const FormContainer = styled.div`
   padding: 20px 0;
+`;
+
+const NoTasks = styled.span`
+  color: #2e86de;
+  background: rgba(46, 134, 222, 0.25);
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
 `;
 
 export default Home;
