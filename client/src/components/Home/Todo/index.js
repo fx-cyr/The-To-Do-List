@@ -119,10 +119,10 @@ const Wrapper = styled.div`
   width: 85%;
   justify-content: space-around;
   align-items: center;
-  border: none;
+  border: 1px solid #e1e1e1;
   border-radius: 18px;
-  -webkit-box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const DoneWrapper = styled.div`
@@ -134,10 +134,10 @@ const DoneWrapper = styled.div`
   width: 85%;
   justify-content: space-around;
   align-items: center;
-  border: none;
+  border: 1px solid #e1e1e1;
   border-radius: 18px;
-  -webkit-box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const Checker = styled.button`
