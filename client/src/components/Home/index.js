@@ -4,7 +4,6 @@ import Header from "./Header";
 import Todo from "./Todo";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import HourglassEmptyIcon from "@material-ui/icons/HourglassEmpty";
 
@@ -100,7 +99,7 @@ const Button = styled.button`
   border-radius: 18px;
   padding: 20px;
   border: none;
-  background: #ff6b6b;
+  background: #ff5959;
   box-shadow: 0px 5px 20px 1px rgba(255, 107, 107, 0.4);
   font-family: Montserrat;
   font-size: 1.1em;
@@ -113,9 +112,10 @@ const Input = styled.input`
   padding: 20px;
   margin: 5px 5px;
   border-radius: 15px;
+  border: 1px solid #e1e1e1;
   font-family: Montserrat;
-  -webkit-box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const Form = styled.form``;
