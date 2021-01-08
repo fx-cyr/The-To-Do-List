@@ -176,15 +176,15 @@ const Header = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 50px;
 `;
 
 const BackIcon = styled(ArrowBackIcon)`
   position: absolute;
-  top: 35px;
+  top: 60px;
   color: #fba31f;
   padding: 3.5px;
-  margin-left: 5px;
+  margin-left: 10px;
   background: #feeacc;
   border-radius: 50px;
 `;
@@ -202,7 +202,7 @@ const Title = styled.h1`
 
 const DateInput = styled.input`
   border: none;
-  padding: 16px;
+  padding: 10px 0 8px 0;
   margin: 10px 10px;
   border-bottom: 1.2px solid #949494;
 `;
@@ -253,7 +253,7 @@ const Button = styled.button`
   align-items: center;
   margin: 0 auto;
   border-radius: 18px;
-  padding: 16px 20px;
+  padding: 20px;
   border: none;
   background: #ff6b6b;
   box-shadow: 0px 5px 20px 1px rgba(255, 107, 107, 0.4);

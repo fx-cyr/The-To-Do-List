@@ -39,7 +39,7 @@ const Header = () => {
             <Icon>
               <BsChatQuote />
             </Icon>
-            {randomQuote.text} {randomQuote.author}
+            {randomQuote.text} - {randomQuote.author}
           </Quote>
         </>
       )}
@@ -49,33 +49,44 @@ const Header = () => {
 
 const Wrapper = styled.img`
   max-width: 400px;
-  max-height: 270px;
+  max-height: 280px;
   object-fit: cover;
-  position: relative;
-  opacity: 70%;
+  opacity: 80%;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: -8px;
 `;
-
-const Container = styled.div``;
 
 const Quote = styled.div`
   position: absolute;
   text-align: center;
   max-width: 400px;
-  width: 90%;
-  top: 20%;
+  width: 75%;
+  top: 10%;
   left: 10;
   color: white;
   padding: 15px 15px;
-  border: 1px solid black;
+  border: none;
   border-radius: 8px;
-  background-color: black;
-  opacity: 50%;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  font-family: Montserrat;
 `;
 
-const Icon = styled.div``;
+const Icon = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.8em;
+`;
 
 export default Header;

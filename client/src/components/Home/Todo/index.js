@@ -85,7 +85,6 @@ const Todo = ({ setIsCompleted, isCompleted, setAllTasks, allTasks, task }) => {
                 }}></Checker>
               <Description>
                 <Title>{task.title}</Title>
-
                 <Category>{task.category}</Category>
               </Description>
               <Priority>{task.priority}</Priority>
@@ -156,7 +155,7 @@ const DoneChecker = styled.button`
   margin-right: 5px;
   border-radius: 50%;
   border: none;
-  background: rgba(29, 209, 161, 0.38);
+  background: rgba(29, 209, 161, 0.25);
   align-items: center;
   justify-content: center;
   display: flex;
@@ -178,12 +177,6 @@ const DoneTitle = styled.p`
   color: #cccccc;
 `;
 
-// const CrossedTitle = styled.p`
-//   font-size: 18px;
-//   margin: 0 auto;
-//   text-decoration: line-through;
-// `;
-
 const Category = styled.span`
   color: #a3a3a3;
   font-size: 0.8em;
@@ -200,12 +193,22 @@ const Priority = styled.p`
   width: 20%;
   font-size: 0.8em;
   color: #fba31f;
+  background: #feeacc;
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
 `;
 
 const DonePriority = styled.p`
   width: 20%;
   color: #1dd1a1;
   font-size: 0.8em;
+  background: rgba(29, 209, 161, 0.25);
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 6px;
 `;
 
 export default Todo;
